@@ -1,10 +1,12 @@
 
-
 import { createApp } from 'vue'
 import { createPinia } from 'pinia'
 
 import App from './App.vue'
+//引入路由
 import router from './router'
+//引入仓库
+import pinia from './stores'
 
 import ElementPlus from 'element-plus'
 import 'element-plus/dist/index.css'
@@ -18,6 +20,7 @@ const app = createApp(App)
 
 app.use(createPinia())
 app.use(router)
+app.use(pinia)
 app.use(ElementPlus,{
   locale: zhCn
 })

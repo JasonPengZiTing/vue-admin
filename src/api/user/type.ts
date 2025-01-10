@@ -22,12 +22,12 @@ interface user {
 
 interface userInfo{
   userId: string,
-          avatar:string,
-          username: string,
-          password: string,
-          desc: string,
-          roles: string[],
-          buttons: string[],
-          routes: string[],
-          token: string,
+  avatar:string,
+  username: string,
+  password: string,
+  desc: string,
+  roles: string[],
+  buttons: string[],
+  routes: string[],
+  token: string,
 }
