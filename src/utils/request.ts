@@ -2,18 +2,21 @@ import axios from "axios";
 import { ElMessage } from "element-plus";
 //创建axios实例
 let request = axios.create({
-    // baseURL: import.meta.env.VITE_APP_BASE_API,
+    baseURL: import.meta.env.VITE_APP_BASE_API,
     //baseURL: '/api/',
+    //baseURL: '',
     timeout: 5000
 })
 //请求拦截器
 request.interceptors.request.use(config => {
-    console.log(request);
-
+    console.log(config);
+    console.log('Full URL:', config.baseURL + config.url);
     return config;
 });
 //响应拦截器
 request.interceptors.response.use((response) => {
+    console.log(response);
+
     return response.data;
 }, (error) => {
     //处理网络错误

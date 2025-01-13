@@ -21,7 +21,7 @@ const app = createApp(App)
 app.use(createPinia())
 app.use(router)
 app.use(pinia)
-app.use(ElementPlus,{
+app.use(ElementPlus, {
   locale: zhCn
 })
 app.use(gloalComponent)
@@ -30,13 +30,22 @@ import axios from "axios";
 console.log(add);
 
 
-// axios({
-//   url:'api/user/login',
-//   method:'post',
-//   data:{
-//     username:'admin',
-//     password:'111111'
-//   }
-// })
+axios({
+  url: '/api/user/login',
+  method: "post",
+  data: {
+    username: 'admin',
+    password: '111111'
+  }
+})
+
+axios({
+  url: 'https://www.baidu.com/',
+  method: "post",
+  // data: {
+  //   username: 'admin',
+  //   password: '111111'
+  // }
+})
 
 app.mount('#app')

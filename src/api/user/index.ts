@@ -20,7 +20,7 @@ enum API {
 
   USERINFO_URL = '/admin/acl/index/info',
 
-  LOGOUT_URL = 'user/logout',
+  LOGOUT_URL = '/user/logout',
 
 }
 //登录接口

@@ -4,19 +4,21 @@ import { Check, Delete, Edit, Message, Search, Star } from '@element-plus/icons-
 
 import request from './utils/request'
 import { onMounted } from 'vue'
+import add from './mock/user'
 
 onMounted(() => {
   request({
-    url: '/api/user/login',
+    url: '/user/login',
     method: 'post',
     data: {
       username: 'admin',
       password: '111111',
     },
-  }).then((res) => {
-    console.log(res)
+  }).then((rep) => {
+    console.log('------' + rep.headers)
+    console.log(rep)
   })
-  console.log(request)
+  //console.log(request)
 })
 </script>
 
