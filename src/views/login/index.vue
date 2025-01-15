@@ -6,7 +6,7 @@
         <div class="login_form">
           <h1>Hello</h1>
           <h3>欢迎来到xxxx</h3>
-          <el-form>
+          <el-form :rules="rules" :model="loginFrom" ref="loginFroms">
             <el-form-item prop="username">
               <el-input :prefix-icon="User" v-model="loginFrom.username"></el-input>
             </el-form-item>
@@ -41,21 +41,39 @@ import { reactive, ref } from 'vue'
 import { ElNotification } from 'element-plus'
 //引入用户相关的小仓库
 import useUserStore from '@/stores/moduels/user'
-let useStore = useUserStore()
+//引入路由
+import { useRouter } from 'vue-router'
+//引入时间函数
+import { getTime } from '@/utils/time'
 
-let loginFrom = reactive({ username: 'admin', password: '111111' })
+//获取用户小仓库
+const useStore = useUserStore()
+//引入路由
+const router = useRouter()
+//获取定义表单数据
+const loginFrom = reactive({ username: 'admin', password: '111111' })
 //定义变量控制按钮加载效果
-let loading = ref(false)
-
+const loading = ref(false)
+//定义表单数据
+const loginFroms = ref()
 //点击登录方法
-let login = () => {
+const login = async () => {
+  //表单验证
+  await loginFroms.value.validate()
+  //表单验证通过后，开始加载效果
   loading.value = true
   try {
-    let result = useStore.userLogin(loginFrom)
-    console.log(result)
+    const result = await useStore.userLogin(loginFrom)
+    console.log(JSON.stringify(result, null, 2))
+    //登录成功后跳转到主页
+    router.push('/')
+    ElNotification({
+      type: 'success',
+      message: '登录成功',
+      title: `Hi,${getTime()}好，欢迎回来`,
+    })
   } catch (error) {
     console.log(error)
-
     //登录失败加载效果消息
     loading.value = false
     //登录失败的提示信息
@@ -64,6 +82,30 @@ let login = () => {
       message: (error as Error).message,
     })
   }
+}
+
+const validateUsername = (rule: any, value: any, callback: any) => {
+  if (value.length < 5) {
+    callback(new Error('用户名长度至少5个字符'))
+  } else if (value.length > 10) {
+    callback(new Error('用户名长度最多10个字符'))
+  } else {
+    callback()
+  }
+}
+
+//定义校验规则
+const rules = {
+  username: [
+    { required: true, message: '请输入用户名', trigger: 'blur' },
+    //自定义校验规则长度
+    { trigger: 'change', validator: validateUsername },
+    //{ min: 5, max: 10, message: '用户名长度在5到10个字符', trigger: 'blur' },
+  ],
+  password: [
+    { required: true, message: '请输入密码', trigger: 'blur' },
+    { min: 6, max: 15, message: '密码长度在6到15个字符', trigger: 'blur' },
+  ],
 }
 </script>
 

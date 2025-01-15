@@ -7,6 +7,7 @@ import vueDevTools from 'vite-plugin-vue-devtools'
 import { createSvgIconsPlugin } from 'vite-plugin-svg-icons'
 import path from 'path'
 import { viteMockServe } from 'vite-plugin-mock'
+import { fa } from 'element-plus/es/locales.mjs'
 
 export default ({ command }: ConfigEnv) => {
   return {
@@ -21,9 +22,16 @@ export default ({ command }: ConfigEnv) => {
         symbolId: 'icon-[dir]-[name]',
       }),
       viteMockServe({
-        localEnabled: command === 'serve',
+        mockPath: './src/mock',
+        localEnabled: true,
+        supportTs: true,
+        logger: true,
+        enable: true,
+        watchFiles: true,
+        prodEnabled: false,
       }),
     ],
+
     resolve: {
       alias: {
         '@': fileURLToPath(new URL('./src', import.meta.url))

@@ -14,7 +14,6 @@ import zhCn from 'element-plus/es/locale/lang/zh-cn.mjs'
 import 'virtual:svg-icons-register'
 import gloalComponent from './components'
 import '@/styles/index.scss';
-import add from '@/mock/user.ts'
 
 const app = createApp(App)
 
@@ -26,26 +25,23 @@ app.use(ElementPlus, {
 })
 app.use(gloalComponent)
 
-import axios from "axios";
-console.log(add);
 
 
-axios({
-  url: '/api/user/login',
-  method: "post",
-  data: {
-    username: 'admin',
-    password: '111111'
-  }
-})
+// axios({
+//   url: '/api/user/login',
+//   method: "post",
+//   headers: {
+//     'Content-Type': 'application/json'
+//   },
+//   data: {
+//     username: 'admin',
+//     password: '111111'
+//   }
+// }).then(res => {
+//   console.log('登录响应：', res)
+// }).catch(err => {
+//   console.error('登录错误：', err)
+// })
 
-axios({
-  url: 'https://www.baidu.com/',
-  method: "post",
-  // data: {
-  //   username: 'admin',
-  //   password: '111111'
-  // }
-})
 
 app.mount('#app')

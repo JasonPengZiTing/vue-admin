@@ -6,12 +6,12 @@ const router = createRouter({
     {
       path: '/home',
       name: 'home',
-      component: ()=> import('../views/home/index.vue'),
+      component: () => import('../views/home/index.vue'),
     },
     {
       path: '/',
       name: 'layout',
-      component: ()=> import('../views/home/index.vue'),
+      component: () => import('../layout/index.vue'),
     },
     {
       path: '/login',
@@ -24,17 +24,17 @@ const router = createRouter({
     {
       path: '/404',
       name: '404',
-      component: ()=> import('../views/404/index.vue'),
+      component: () => import('../views/404/index.vue'),
     },
     {
       path: '/:pathMatch(.*)*',
       redirect: '404'
     }
   ],
-  scrollBehavior(){
-    return{
-      left:0,
-      top:0
+  scrollBehavior() {
+    return {
+      left: 0,
+      top: 0
     }
   }
 })
