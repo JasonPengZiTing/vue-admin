@@ -1,36 +1,13 @@
 import { createRouter, createWebHistory } from 'vue-router'
+//引入常量路由
+import { constantRoute } from '@/router/routers'
 
 const router = createRouter({
+  //路由模式
   history: createWebHistory(import.meta.env.BASE_URL),
-  routes: [
-    {
-      path: '/home',
-      name: 'home',
-      component: () => import('../views/home/index.vue'),
-    },
-    {
-      path: '/',
-      name: 'layout',
-      component: () => import('../layout/index.vue'),
-    },
-    {
-      path: '/login',
-      name: 'about',
-      // route level code-splitting
-      // this generates a separate chunk (About.[hash].js) for this route
-      // which is lazy-loaded when the route is visited.
-      component: () => import('../views/login/index.vue'),
-    },
-    {
-      path: '/404',
-      name: '404',
-      component: () => import('../views/404/index.vue'),
-    },
-    {
-      path: '/:pathMatch(.*)*',
-      redirect: '404'
-    }
-  ],
+  //路由信息
+  routes: constantRoute,
+  //滚动行为
   scrollBehavior() {
     return {
       left: 0,
@@ -38,5 +15,5 @@ const router = createRouter({
     }
   }
 })
-
+//暴露路由
 export default router

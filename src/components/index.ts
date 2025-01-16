@@ -1,12 +1,14 @@
 import SvgIcon from '@/components/SvgIcon.vue'
-import type { App, Component } from 'vue';
-const components = { SvgIcon };
+import type { App } from 'vue';
+import * as ElementPlusIconsVue from '@element-plus/icons-vue'
+const components = { SvgIcon, ...ElementPlusIconsVue };
+
 export default {
-    install(app: App) {
-        Object.keys(components).forEach((key: string) => {
-            app.component(key, components[key]);
-            console.log(key);
-            
-        })
-    }
+  install(app: App) {
+    Object.keys(components).forEach((key: string) => {
+      app.component(key, components[key]);
+      console.log(key);
+
+    })
+  }
 }

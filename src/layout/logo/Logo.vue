@@ -10,7 +10,7 @@ import { logoPath, projectName } from '@/setting'
 <style scoped lang="scss">
 .logo_container {
   width: 100%;
-  height: 60px;
+  height: variable.$logo-height;
   display: flex;
   align-items: center;
   justify-content: center;

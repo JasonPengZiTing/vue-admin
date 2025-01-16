@@ -6,7 +6,8 @@
       <!-- 滚动组件 -->
       <el-scrollbar class="scrollbar_container">
         <el-menu class="el-menu-vertical-demo">
-          <el-menu-item index="1">
+          <Menu />
+          <!-- <el-menu-item index="1">
             <i class="el-icon-menu"></i>
             <template v-slot:title>
               <span>导航一</span>
@@ -20,7 +21,7 @@
             <el-menu-item index="2-4-1">用户管理</el-menu-item>
             <el-menu-item index="2-4-2">角色管理</el-menu-item>
             <el-menu-item index="2-4-3">菜单管理</el-menu-item>
-          </el-sub-menu>
+          </el-sub-menu> -->
         </el-menu>
       </el-scrollbar>
     </div>
@@ -30,6 +31,7 @@
 </template>
 <script setup lang="ts">
 import Logo from './logo/Logo.vue'
+import Menu from './menu/index.vue'
 </script>
 <style scoped lang="scss">
 .layout_container {
@@ -43,9 +45,6 @@ import Logo from './logo/Logo.vue'
     .scrollbar_container {
       width: 100%;
       height: calc(100vh - variable.$logo-height);
-      p {
-        height: 100px;
-      }
     }
   }
 
@@ -55,7 +54,7 @@ import Logo from './logo/Logo.vue'
     left: calc(variable.$sidebar-width + 1px);
     width: calc(100% - variable.$sidebar-width);
     height: variable.$header-height;
-    background-color: blue;
+    //background-color: blue;
   }
 
   .main_container {
@@ -64,7 +63,7 @@ import Logo from './logo/Logo.vue'
     left: calc(variable.$sidebar-width + 1px);
     width: calc(100% - variable.$sidebar-width);
     height: calc(100vh - variable.$header-height);
-    background-color: yellow;
+    //background-color: yellow;
     padding: 20px;
     overflow: auto;
   }

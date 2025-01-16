@@ -2,13 +2,14 @@
 import { defineStore } from 'pinia'
 //引入用户接口
 import { reqLogin, reqLogout, reqUserInfo } from '@/api/user'
-import { da } from 'element-plus/es/locales.mjs'
 //引入用户参数类型定义
 import { type userInfoReponseData, type loginResponseData, type loginFormData } from '@/api/user/type'
 //引入小仓库存储的类型
 import { type userStore } from './types/type'
 //引入本地存储方法
 import { GET_TOKEN, SET_TOKEN } from '@/utils/token'
+//引入路由
+import { constantRoute } from '@/router/routers'
 
 //创建用户小仓库
 const useUserStore = defineStore('', {
@@ -16,7 +17,11 @@ const useUserStore = defineStore('', {
   //小仓库存数据的地方
   state: (): userStore => {
     return {
-      token: GET_TOKEN()
+      //token
+      token: GET_TOKEN(),
+      //存储路由信息
+      menuRoutes: constantRoute
+
     }
   },
   //异步|写逻辑的地方

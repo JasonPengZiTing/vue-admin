@@ -40,7 +40,7 @@ import { User, Lock } from '@element-plus/icons-vue'
 import { reactive, ref } from 'vue'
 import { ElNotification } from 'element-plus'
 //引入用户相关的小仓库
-import useUserStore from '@/stores/moduels/user'
+import useUserStore from '@/stores/modules/user'
 //引入路由
 import { useRouter } from 'vue-router'
 //引入时间函数
