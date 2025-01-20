@@ -22,7 +22,7 @@ import { onMounted } from 'vue'
 
 <template>
   <router-view></router-view>
-  <svg-icon name="system" color="red" width="200px" height="200px"></svg-icon>
+  <!-- <svg-icon name="system" color="red" width="200px" height="200px"></svg-icon> -->
 </template>
 
 <style scoped lang="scss">

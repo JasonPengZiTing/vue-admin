@@ -1,11 +1,13 @@
 <template>
   <div class="logo_container">
     <img :src="logoPath" alt="logo" />
-    <p>{{ projectName }}</p>
+    <span v-show="!settingStore.isFold">{{ projectName }}</span>
   </div>
 </template>
 <script setup lang="ts">
 import { logoPath, projectName } from '@/setting'
+import useSettingStore from '@/stores/modules/setting'
+const settingStore = useSettingStore()
 </script>
 <style scoped lang="scss">
 .logo_container {
@@ -14,15 +16,17 @@ import { logoPath, projectName } from '@/setting'
   display: flex;
   align-items: center;
   justify-content: center;
+  padding: 10px;
   img {
     width: 30px;
     height: 30px;
   }
-  p {
+  span {
     font-size: 20px;
     font-weight: bold;
     margin-left: 10px;
     color: #fff;
+    white-space: nowrap;
   }
 }
 </style>

@@ -7,7 +7,7 @@ export default {
   install(app: App) {
     Object.keys(components).forEach((key: string) => {
       app.component(key, components[key]);
-      console.log(key);
+      //console.log(key);
 
     })
   }
