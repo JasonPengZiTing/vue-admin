@@ -7,7 +7,7 @@ import { type userInfoReponseData, type loginResponseData, type loginFormData } 
 //引入小仓库存储的类型
 import { type userStore } from './types/type'
 //引入本地存储方法
-import { GET_TOKEN, SET_TOKEN } from '@/utils/token'
+import { GET_TOKEN, SET_TOKEN, REMOVE_TOKEN } from '@/utils/token'
 //引入路由
 import { constantRoute } from '@/router/routers'
 
@@ -20,7 +20,10 @@ const useUserStore = defineStore('', {
       //token
       token: GET_TOKEN(),
       //存储路由信息
-      menuRoutes: constantRoute
+      menuRoutes: constantRoute,
+      //存储用户信息
+      userInfo: {}
+
 
     }
   },
@@ -38,12 +41,43 @@ const useUserStore = defineStore('', {
         this.token = (result.data.token as string);
         //本地存储持久化存储一份
         SET_TOKEN(result.data.token as string);
+        //登录成功后获取用户信息
+        await this.getUserInfo()
         //能保证当前async函数返回一个成功的promise
         return 'ok';
       } else {
         return Promise.reject(new Error("登录失败"));
       }
 
+    },
+    //定义退出登录的方法
+    async logout() {
+      //发送退出登录请求,暂时没有
+      //const result: any = await reqLogout();
+      //if (result.code === 200) {
+      //清除pinia仓库中的数据
+      this.token = null
+      //清除用户信息
+      this.userInfo = null
+      //清除本地存储的token
+      REMOVE_TOKEN()
+      return 'ok'
+      // } else {
+      //   return Promise.reject(new Error("退出登录失败"));
+      // }
+    },
+    //定义获取用户信息的方法
+    async getUserInfo() {
+      const result: userInfoReponseData = await reqUserInfo();
+      if (result.code === 200) {
+        console.log('获取到的用户信息', result.data.checkUser);
+        //将获取到的用户信息存储到pinia仓库中
+        this.userInfo = result.data.checkUser
+        //能保证当前async函数返回一个成功的promise
+        return 'ok'
+      } else {
+        return Promise.reject(new Error("获取用户信息失败"));
+      }
     }
   },
   getters: {

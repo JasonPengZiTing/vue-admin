@@ -28,10 +28,10 @@
     <el-col :span="12">
       <div class="right_container">
         <el-button :icon="Refresh" circle @click="handleRefresh" />
-        <el-button :icon="FullScreen" circle />
+        <el-button :icon="FullScreen" circle @click="handleFullScreen" />
         <el-button :icon="Setting" circle />
         <img
-          src="../../../public/logo.png"
+          :src="user.avatar"
           alt=""
           srcset=""
           style="width: 24px; height: 24px; margin: 0px 10px"
@@ -39,14 +39,14 @@
         <!-- 下拉菜单 -->
         <el-dropdown>
           <span class="el-dropdown-link">
-            admin
+            {{ user.username }}
             <el-icon class="el-icon--right">
               <arrow-down />
             </el-icon>
           </span>
           <template #dropdown>
             <el-dropdown-menu>
-              <el-dropdown-item>退出登录</el-dropdown-item>
+              <el-dropdown-item @click="handleLogout">退出登录</el-dropdown-item>
             </el-dropdown-menu>
           </template>
         </el-dropdown>
@@ -57,10 +57,12 @@
 <script setup lang="ts">
 import { ArrowRight, Refresh, FullScreen, Setting } from '@element-plus/icons-vue'
 import { Expand, Fold } from '@element-plus/icons-vue'
-import { ref } from 'vue'
+import { reactive, ref, computed, onMounted } from 'vue'
 import useSettingStore from '@/stores/modules/setting'
 import { useRouter } from 'vue-router'
-const router = useRouter()
+import useUserStore from '@/stores/modules/user'
+//引入路由
+const $router = useRouter()
 //获取setting小仓库
 const settingStore = useSettingStore()
 // 折叠和展开事件
@@ -70,7 +72,34 @@ const handleExpand = () => {
 //刷新事件
 const handleRefresh = () => {
   settingStore.isRefresh = !settingStore.isRefresh
-  console.log('刷新按钮状态', settingStore.isRefresh)
+}
+//从仓库中获取用户信息
+const userInfo = useUserStore()
+//组件挂载时获取用户信息
+onMounted(async () => {
+  await userInfo.getUserInfo()
+})
+//获取用户信息展示在页面
+const user = computed(() => userInfo.userInfo)
+//退出登录事件
+const handleLogout = () => {
+  //获取当前路由地址，方便退出登录后跳转到退出之前的页面
+  const currentPath = $router.currentRoute.value.path
+  userInfo.logout()
+  //路由跳转到登录页面
+  $router.push({ path: '/login', query: { redirect: currentPath } })
+  console.log('退出登录')
+}
+
+//全屏事件
+const handleFullScreen = () => {
+  //DOM对象的一个属性，用来判断获取当前是否全屏
+  const element = document.fullscreenElement
+  if (!element) {
+    document.documentElement.requestFullscreen()
+  } else {
+    document.exitFullscreen()
+  }
 }
 </script>
 <style scoped lang="scss">

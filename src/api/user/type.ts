@@ -22,7 +22,7 @@ interface user {
   checkUser: userInfo
 }
 
-interface userInfo {
+export interface userInfo {
   userId: string,
   avatar: string,
   username: string,

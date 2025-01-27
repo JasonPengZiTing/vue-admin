@@ -14,6 +14,8 @@ import zhCn from 'element-plus/es/locale/lang/zh-cn.mjs'
 import 'virtual:svg-icons-register'
 import gloalComponent from './components'
 import '@/styles/index.scss';
+//引入进度条
+import '@/permission'
 
 const app = createApp(App)
 

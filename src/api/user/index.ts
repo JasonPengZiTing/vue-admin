@@ -18,7 +18,7 @@ enum API {
 
   LOGIN_URL = '/user/login',
 
-  USERINFO_URL = '/admin/acl/index/info',
+  USERINFO_URL = '/user/info',
 
   LOGOUT_URL = '/user/logout',
 

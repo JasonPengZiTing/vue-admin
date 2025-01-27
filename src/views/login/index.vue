@@ -42,14 +42,14 @@ import { ElNotification } from 'element-plus'
 //引入用户相关的小仓库
 import useUserStore from '@/stores/modules/user'
 //引入路由
-import { useRouter } from 'vue-router'
+import { useRouter, useRoute } from 'vue-router'
 //引入时间函数
 import { getTime } from '@/utils/time'
 
 //获取用户小仓库
 const useStore = useUserStore()
 //引入路由
-const router = useRouter()
+const $router = useRouter()
 //获取定义表单数据
 const loginFrom = reactive({ username: 'admin', password: '111111' })
 //定义变量控制按钮加载效果
@@ -64,9 +64,12 @@ const login = async () => {
   loading.value = true
   try {
     const result = await useStore.userLogin(loginFrom)
-    console.log(JSON.stringify(result, null, 2))
+    //登录成功之后获取用户信息
+    //await useStore.getUserInfo()
+    //判断地址是否有redirect参数
+    const redirect = $router.currentRoute.value.query.redirect
     //登录成功后跳转到主页
-    router.push('/')
+    $router.push(redirect ? redirect : '/')
     ElNotification({
       type: 'success',
       message: '登录成功',

@@ -21,7 +21,8 @@ export const constantRoute = [
     meta: {
       title: '',
       icon: 'HomeFilled',
-      hidden: false
+      hidden: false,
+      requireAuth: true
     },
     redirect: '/home',
     children: [
@@ -32,7 +33,8 @@ export const constantRoute = [
         meta: {
           title: '首页',
           icon: 'HomeFilled',
-          hidden: false
+          hidden: false,
+          requireAuth: true
         },
 
       }
@@ -45,7 +47,8 @@ export const constantRoute = [
     meta: {
       title: '大屏展示',
       icon: 'Platform',
-      hidden: false
+      hidden: false,
+      requireAuth: true
     },
   },
   {
@@ -55,7 +58,8 @@ export const constantRoute = [
     meta: {
       title: '权限管理',
       icon: 'Lock',
-      hidden: false
+      hidden: false,
+      requireAuth: true
     },
     redirect: '/acl/user',
     children: [
@@ -66,7 +70,8 @@ export const constantRoute = [
         meta: {
           title: '用户管理',
           icon: 'User',
-          hidden: false
+          hidden: false,
+          requireAuth: true
         },
       },
       {
@@ -76,7 +81,8 @@ export const constantRoute = [
         meta: {
           title: '角色管理',
           icon: 'UserFilled',
-          hidden: false
+          hidden: false,
+          requireAuth: true
         },
       },
       {
@@ -86,7 +92,8 @@ export const constantRoute = [
         meta: {
           title: '菜单管理',
           icon: 'Menu',
-          hidden: false
+          hidden: false,
+          requireAuth: true
         },
       }
     ]
@@ -98,7 +105,8 @@ export const constantRoute = [
     meta: {
       title: '商品管理',
       icon: 'Shop',
-      hidden: false
+      hidden: false,
+      requireAuth: true
     },
     redirect: '/product/trademark',
     children: [
@@ -109,7 +117,8 @@ export const constantRoute = [
         meta: {
           title: '品牌管理',
           icon: 'GoodsFilled',
-          hidden: false
+          hidden: false,
+          requireAuth: true
         },
       },
       {
@@ -119,7 +128,8 @@ export const constantRoute = [
         meta: {
           title: '属性管理',
           icon: 'ChromeFilled',
-          hidden: false
+          hidden: false,
+          requireAuth: true
         },
       },
       {
@@ -129,7 +139,8 @@ export const constantRoute = [
         meta: {
           title: 'SPU管理',
           icon: 'HelpFilled',
-          hidden: false
+          hidden: false,
+          requireAuth: true
         },
       },
       {
@@ -139,7 +150,8 @@ export const constantRoute = [
         meta: {
           title: 'SKU管理',
           icon: 'HomeFilled',
-          hidden: false
+          hidden: false,
+          requireAuth: true
         },
       }
     ]
